@@ -18,14 +18,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: wait 60s to remote manifest deploy in gh-pages
-        uses: jakejarvis/wait-action@master
-        with:
-          time: '60s'
-
       - name: Run validator (prod/md)
         run: |
-          npm run validate md prod > README.md
+          node scripts/check-mf-deps.js > README.md
 
       - name: Commit and push report
         run: |

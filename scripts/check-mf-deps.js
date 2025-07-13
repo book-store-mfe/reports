@@ -232,6 +232,7 @@ function printTerminalReport(report) {
     printLn('');
   });
 }
+
 function printTxtReport(report) {
   const colProj = 14, colDeclared = 11, colInstalled = 11, colEffRange = 13, colSource = 13, colStatus = 20;
   console.log('\n===================[ SHARED DEPENDENCIES CHECK ]=================');
@@ -268,7 +269,66 @@ function printTxtReport(report) {
     console.log('');
   });
 }
+
 function printMarkdownReport(report) {
+
+  function makeLibAnchor(libName) {
+    return (
+      '#' +
+      libName
+        .toLowerCase()
+        .replace(/^@/, '')   // remove @ do começo
+        .replace(/\//g, '-') // troca / por -
+        .replace(/[^a-z0-9\-]/g, '') // remove símbolos exceto -
+    );
+  }
+
+
+  // 1. Project summary
+  const projectSummary = {};
+  report.forEach(({ results, errors }) => {
+    results.forEach(r => {
+      if (!projectSummary[r.project]) projectSummary[r.project] = { ok: true, errors: [] };
+      if (r.status !== 'OK') {
+        projectSummary[r.project].ok = false;
+      }
+    });
+    Object.entries(errors).forEach(([proj, errs]) => {
+      if (!projectSummary[proj]) projectSummary[proj] = { ok: true, errors: [] };
+      projectSummary[proj].ok = false;
+      projectSummary[proj].errors.push(...errs);
+    });
+  });
+
+  // 2. Lib summary
+  const libSummary = {};
+  report.forEach(({ dependency, results, errors }) => {
+    let ok = true;
+    results.forEach(r => { if (r.status !== 'OK') ok = false; });
+    if (Object.keys(errors).length > 0) ok = false;
+    libSummary[dependency] = ok;
+  });
+
+  // Print project summary table
+  console.log(`\n## 🗂️ Project Status Summary\n`);
+  console.log('| Project | Status |');
+  console.log('|---------|--------|');
+  Object.entries(projectSummary).forEach(([proj, val]) => {
+    const status = val.ok ? '✅ OK' : '❌ Error';
+    console.log(`| ${proj} | ${status} |`);
+  });
+
+  // Print lib summary table
+  console.log(`\n## 📦 Shared Library Status Summary\n`);
+  console.log('| Library | Status |');
+  console.log('|---------|--------|');
+  Object.entries(libSummary).forEach(([lib, ok]) => {
+    const status = ok ? '✅ OK' : '❌ Error';
+    const link = `[${lib}](${makeLibAnchor(lib)})`;
+    console.log(`| ${link} | ${status} |`);
+  });
+
+  // Print detailed per dependency (como antes)
   report.forEach(({ dependency, results, errors, rangeSource }) => {
     console.log(`\n### ${dependency}  \n_Source: ${rangeSource}_\n`);
     console.log('| Project | Declared | Installed | Range | Source | Status |');
@@ -288,6 +348,7 @@ function printMarkdownReport(report) {
     console.log('\n---');
   });
 }
+
 function printJsonReport(report) {
   console.log(JSON.stringify(report, null, 2));
 }

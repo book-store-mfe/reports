@@ -2,10 +2,14 @@
   "name": "bookstore-app-reports",
   "private": true,
   "scripts": {
-    "validate": "node scripts/check-mf-deps.js",
-    "validate:prod": "node scripts/check-mf-deps.js md prod > README.md"
+    "smoke": "playwright test",
+    "smoke:ui": "playwright test --ui",
+    "validate": "node scripts/check-mf-deps.js"
   },
   "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.0.13",
+    "playwright": "^1.54.1",
     "semver": "^7.7.2"
   }
 }
