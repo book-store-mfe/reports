@@ -51,12 +51,12 @@ for (const suite of data.suites) {
           console.log('relPath', relPath);
           if (relPath) {
             // Markdown link, ou HTML <video> se quiser inline
-            videoLink = `[🎬 Ver vídeo](${relPath})`;
+            //videoLink = `[🎬 Ver vídeo](${relPath})`;
             //videoLink = `<a href="${relPath}">🎬</a>`;
             // Ou, se quiser player inline localmente:
             // videoLink = `<video src="${relPath}" controls width="200"></video>`;
             // Ou, se quiser link pro repo (exige push dos vídeos):
-            // videoLink = `[🎬 Ver vídeo no GitHub](${repoUrl}${relPath})`;
+            videoLink = `[🎬 Ver vídeo no GitHub](${repoUrl}${relPath})`;
           }
         }
         md += `| \`${suite.title}\` | \`${spec.title}\` | ${status} | ${videoLink} |\n`;
