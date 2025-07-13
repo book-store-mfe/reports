@@ -20,12 +20,12 @@ jobs:
 
       - name: Run validator (prod/md)
         run: |
-          node scripts/check-mf-deps.js md prod > dependencies_report.md
+          node scripts/check-mf-deps.js md prod > DEPENDENCIES-REPORT.md
 
       - name: Commit and push report
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add dependencies_report.md
+          git add DEPENDENCIES-REPORT.md
           git commit -m "Update prod report [ci skip]" || echo "No changes to commit"
           git push

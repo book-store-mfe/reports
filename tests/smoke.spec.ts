@@ -7,17 +7,11 @@ test.describe('Store MFE smoke', () => {
   test('sign navigation', async ({ page }) => {
     await page.goto(`${baseUrl}login`);
 
-    await page.screenshot({ path: 'smoke-outputs/login.png' });
-
     await page.getByRole('button', { name: 'Criar conta' }).click()
-
-    await page.screenshot({ path: 'smoke-outputs/sign-up.png' });
-
     await page.locator('input[formcontrolname="name"]').fill('Jhon');
     await page.locator('input[formcontrolname="email"]').fill('jhon@gmail.com');
     await page.getByRole('button', { name: 'Cadastro' }).click()
 
-    await page.screenshot({ path: 'smoke-outputs/hom.png' });
     await expect(page.getByRole('button', { name: 'Bookstore' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'account' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'catalog' })).toBeVisible();

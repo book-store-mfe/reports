@@ -23,16 +23,21 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npm run smoke:ci
+        run: npm run smoke:ci --silent > smoke-results.json
 
       - name: Generate markdown report
         run: node scripts/gen-smoke-report.js
+
+      - name: copy videos
+        run: |
+          mkdir -p smoke-outputs 
+          find test-results -type f -name "*.webm" -exec cp {} smoke-outputs/ \;
 
       - name: Commit markdown report
         run: |
           git config --global user.email "ci@github.com"
           git config --global user.name "CI"
-          git add smoke-report.md
+          git add SMOKE-REPORT.md smoke-outputs*
           git commit -m "Update smoke report [ci skip]" || echo "No changes"
           git push
 
