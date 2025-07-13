@@ -1,0 +1,11 @@
+{
+  "name": "bookstore-app-reports",
+  "private": true,
+  "scripts": {
+    "validate": "node scripts/check-mf-deps.js",
+    "validate:prod": "node scripts/check-mf-deps.js md prod > README.md"
+  },
+  "devDependencies": {
+    "semver": "^7.7.2"
+  }
+}

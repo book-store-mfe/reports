@@ -1,0 +1,14 @@
+{
+  "remotes_local": {
+    "store": "http://localhost:4200/mf-manifest.json",
+    "account": "http://localhost:4201/mf-manifest.json",
+    "catalog": "http://localhost:4202/mf-manifest.json",
+    "review": "http://localhost:4203/mf-manifest.json"
+  },
+  "remotes_prod": {
+    "store": "https://book-store-mfe.github.io/account/mf-manifest.json",
+    "account": "https://book-store-mfe.github.io/account/mf-manifest.json",
+    "catalog": "https://book-store-mfe.github.io/catalog/mf-manifest.json",
+    "review": "https://book-store-mfe.github.io/review/mf-manifest.json"
+  }
+}
