@@ -40,6 +40,18 @@ jobs:
           mkdir -p smoke-outputs 
           find test-results -type f -name "*.webm" -exec cp {} smoke-outputs/ \;
 
+      - name: Convert WebM to MP4
+        run: |
+          for f in smoke-outputs/*.webm; do
+            ffmpeg -y -i "$f" "${f%.webm}.mp4"
+          done
+
+      - name: Convert WebM to GIF
+        run: |
+          for f in smoke-outputs/*.webm; do
+            ffmpeg -y -i "$f" -vf "fps=10,scale=400:-1:flags=lanczos" "${f%.webm}.gif"
+          done
+
       - name: Commit markdown report
         run: |
           git config --global user.email "ci@github.com"
