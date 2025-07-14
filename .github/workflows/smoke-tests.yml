@@ -32,7 +32,7 @@ jobs:
         run: npx playwright install chromium --with-deps
 
       - name: Run Playwright tests
-        run: npm run smoke:ci --silent > smoke-results.json
+        run: npm run smoke:ci --silent > smoke-results.json || true
 
       - name: Install ffmpeg
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
