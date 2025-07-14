@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "smoke": "playwright test",
-    "smoke:ci": "CI=true playwright test --reporter=json > smoke-results.json",
+    "smoke:ci": "CI=true playwright test --reporter=html",
     "smoke:ui": "playwright test --ui",
     "validate": "node scripts/check-mf-deps.js"
   },
