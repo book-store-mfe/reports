@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "smoke": "playwright test",
-    "smoke:ci": "playwright test --reporter=json > smoke-results.json",
+    "smoke:ci": "CI=true playwright test --reporter=json > smoke-results.json",
     "smoke:ui": "playwright test --ui",
     "validate": "node scripts/check-mf-deps.js"
   },
@@ -11,6 +11,7 @@
     "@playwright/test": "^1.54.1",
     "@types/node": "^24.0.13",
     "playwright": "^1.54.1",
-    "semver": "^7.7.2"
+    "semver": "^7.7.2",
+    "strip-ansi": "^7.1.0"
   }
 }

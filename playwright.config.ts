@@ -34,7 +34,7 @@ export default defineConfig({
     trace: 'on-first-retry',
     video: 'on',
     launchOptions: {
-      slowMo: process.env.CI ? 2000 : 50,
+      slowMo: process.env.CI ? 1000 : 50,
     }
 
   },
