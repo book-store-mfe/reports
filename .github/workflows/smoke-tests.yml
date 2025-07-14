@@ -57,6 +57,16 @@ jobs:
           git commit -m "Update smoke report [ci skip]" || echo "No changes"
           git push
 
+      - name: Gerar relatório HTML
+        run: npx playwright test --reporter=html || true
+
+      - name: Publicar no GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./playwright-report
+          force_orphan: true
+
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:

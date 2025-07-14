@@ -32,8 +32,8 @@ function processVideo(videoPath, destName) {
   try {
     const framesDir = baseFile + '_frames';
     if (!fs.existsSync(framesDir)) fs.mkdirSync(framesDir);
-    execSync(`ffmpeg -y -i "${videoPath}" -vf "fps=7,scale=iw*2:ih*2:flags=lanczos" "${framesDir}/frame_%03d.png"`);
-    execSync(`ffmpeg -y -i "${videoPath}" -vf "fps=7,scale=iw*2:ih*2:flags=lanczos,palettegen" "${baseFile}_palette.png"`);
+    execSync(`ffmpeg -y -i "${videoPath}" -vf "fps=20,scale=iw*2:ih*2:flags=lanczos" "${framesDir}/frame_%03d.png"`);
+    execSync(`ffmpeg -y -i "${videoPath}" -vf "fps=20,scale=iw*2:ih*2:flags=lanczos,palettegen" "${baseFile}_palette.png"`);
     execSync(`ffmpeg -y -i "${videoPath}" -i "${baseFile}_palette.png" -filter_complex "fps=7,scale=iw*2:ih*2:flags=lanczos[x];[x][1:v]paletteuse=dither=sierra2_4a" "${targetGif}"`);
     fs.rmSync(framesDir, { recursive: true, force: true });
     fs.rmSync(baseFile + '_palette.png', { force: true });
