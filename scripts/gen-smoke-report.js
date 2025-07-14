@@ -8,7 +8,7 @@ const jsonFile = process.argv[2] || 'smoke-results.json';
 const outputFile = process.argv[3] || 'SMOKE-REPORT.md';
 const videoBaseDir = 'smoke-outputs';
 //const repoRaw = 'https://raw.githubusercontent.com/book-store-mfe/store/main/';
-const repoRaw = 'https://github.com/book-store-mfe/reports/raw/refs/heads/main/smoke-outputs/';
+const repoRaw = 'https://github.com/book-store-mfe/reports/raw/refs/heads/main/';
 
 function slugify(str) {
   return str
