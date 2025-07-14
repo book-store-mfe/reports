@@ -40,22 +40,22 @@ jobs:
         run: npx playwright install-deps chromium
         if: steps.playwright-cache.outputs.cache-hit == 'true'
 
-      - name: Run Playwright tests
-        run: npm run smoke:ci --silent > smoke-results.json || true
+      #- name: Run Playwright tests
+      #  run: npm run smoke:ci --silent > smoke-results.json || true
 
-      - name: Install ffmpeg
-        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      #- name: Install ffmpeg
+      #  run: sudo apt-get update && sudo apt-get install -y ffmpeg
 
-      - name: Generate markdown report
-        run: node scripts/gen-smoke-report.js
+      #- name: Generate markdown report
+      #  run: node scripts/gen-smoke-report.js
 
-      - name: Commit markdown report
-        run: |
-          git config --global user.email "ci@github.com"
-          git config --global user.name "CI"
-          git add SMOKE-REPORT.md smoke-outputs*
-          git commit -m "Update smoke report [ci skip]" || echo "No changes"
-          git push
+      #- name: Commit markdown report
+      #  run: |
+      #    git config --global user.email "ci@github.com"
+      #    git config --global user.name "CI"
+      #    git add SMOKE-REPORT.md smoke-outputs*
+      #    git commit -m "Update smoke report [ci skip]" || echo "No changes"
+      #    git push
 
       - name: Gerar relatório HTML
         run: npx playwright test --reporter=html || true
