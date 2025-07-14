@@ -159,14 +159,17 @@ _Source: requiredVersion_
 
 | Project | Declared | Installed | Range | Source | Status |
 |---------|----------|-----------|-------|--------|--------|
-| review | ~0.1.0 | 0.1.0 | ~0.0.1 | requiredVersion | ❌ Mismatch (def) |
-| account | ~0.1.0 | 0.1.0 | ~0.0.1 | requiredVersion | ❌ Mismatch (def) |
-| store | ~0.1.0 | 0.1.0 | ~0.0.1 | requiredVersion | ❌ Mismatch (def) |
+| review | ~0.2.0 | 0.2.1 | ~0.0.1 | requiredVersion | ❌ Mismatch (def), Mismatch (remote) |
+| account | ~0.1.0 | 0.1.0 | ~0.0.1 | requiredVersion | ❌ Mismatch (def), Mismatch (remote) |
+| store | ~0.1.0 | 0.1.0 | ~0.0.1 | requiredVersion | ❌ Mismatch (def), Mismatch (remote) |
 
 **Errors:**
-- [review] Mismatch (def, requiredVersion): installed (0.1.0) does not satisfy ~0.0.1
+- [review] Mismatch (def, requiredVersion): installed (0.2.1) does not satisfy ~0.0.1
+- [review] Mismatch (remote): installed (0.2.1) not in range of: account@~0.1.0, store@~0.1.0
 - [account] Mismatch (def, requiredVersion): installed (0.1.0) does not satisfy ~0.0.1
+- [account] Mismatch (remote): installed (0.1.0) not in range of: review@~0.2.0
 - [store] Mismatch (def, requiredVersion): installed (0.1.0) does not satisfy ~0.0.1
+- [store] Mismatch (remote): installed (0.1.0) not in range of: review@~0.2.0
 
 ---
 
